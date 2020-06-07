@@ -1,0 +1,22 @@
+.display {
+    width: 500px;
+    height: 200px;
+    background-color: black;
+    position: fixed;
+    top: 10%;
+    left: 30%;
+    color: white
+}
+
+
+#result {
+    border-color: white;
+    border-width: 11px;
+    border-style: solid;
+}
+
+#info {
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}

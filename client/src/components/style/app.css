@@ -1,0 +1,13 @@
+#search {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+#title {
+    border-radius: 10px;
+    outline-width: 0;
+    text-align: center;
+}
