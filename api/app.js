@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+var session = require('express-session')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var findRouter = require('./routes/findAPI');
 var findinfoRouter = require('./routes/findinfo')
+var watchlistRouter = require('./routes/watchlist')
 
 
 var app = express();
@@ -21,13 +23,34 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({ secret: 'keyboard cat',resave: true,saveUninitialized: true,cookie: { maxAge: 60000 }}))
+ 
+// Access the session as req.session
+/*
+app.get('/dad', function(req, res, next) {
+  if (req.session.views) {
+    req.session.views++
+    res.setHeader('Content-Type', 'text/html')
+    res.write('<p>views: ' + req.session.views + '</p>')
+    res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+    res.end()
+  } else {
+    req.session.views = 1
+    res.end('welcome to the session demo. refresh!')
+  }
+})
+*/
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/find',findRouter);
 app.use('/info',findinfoRouter);
-
+app.use('/watch',watchlistRouter);
 
 
 //Error handeler
