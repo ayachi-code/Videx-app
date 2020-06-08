@@ -1,11 +1,14 @@
 import React from 'react'
+import './style/watch.css'
+
 
 
 class Movielist extends React.Component {
     render() {
+        
         return(
-            <div>
-                hey
+            <div id="watch">
+                
             </div>
         )
     }
