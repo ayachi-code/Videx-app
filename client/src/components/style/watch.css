@@ -10,3 +10,11 @@
     border-color: black;
     border-style: dashed;
 }
+
+#movie {
+    display: inline-block;
+    height: 100%;
+    width: 19%;
+    border-style: dotted;
+    border-color: white;
+}

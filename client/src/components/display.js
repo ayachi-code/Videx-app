@@ -1,5 +1,7 @@
 import React from 'react'
+import Movielist from '../components/watchlist' 
 import './style/display.css'
+
 
 
 class Display extends React.Component { 
@@ -11,7 +13,8 @@ class Display extends React.Component {
       loading: true,
       movie_info: null,
       exist: null,
-      watch_list: []
+      watchlist: [],
+      watch_click: true
     }
   }
 
@@ -21,7 +24,7 @@ class Display extends React.Component {
     const find_url = "http://localhost:9000/find/ " + this.props.movie;
     const info_url = "http://localhost:9000/info/ " + this.props.movie;
 
-
+    
     try {
       const [data1,data2] = await Promise.all([
         fetch(find_url),
@@ -41,14 +44,29 @@ class Display extends React.Component {
   }
   
 
-  saveMovie(event) {
+  removeMovie(event) {
+    //console.log(event.target.innerText)
+    if (this.state.watchlist.length < 5) {
+      this.setState({watch_click: true})
+    }
+    console.log(this.state.watchlist)
+    const index = this.state.watchlist.indexOf(event.target.innerText);
+    if (index > -1) {
+     this.state.watchlist.splice(index, 1);
+  }
+  }
+
+  addMovie(event) {
+
     const movie = event.target.innerText;
-    this.state.watch_list.push(movie)
-    fetch('http://localhost:9000/watch/', {
-      method: "post",
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({"usermovies": this.state.watch_list})
-    })
+    this.state.watchlist.push(movie)
+    if (this.state.watchlist.length >= 5) {
+      //Watchlist niet langer kunnen maken
+      this.setState({watch_click: false})
+      console.log("Het is vol")
+    }
+
+    console.log(this.state.watchlist)
   }
 
   render() {   
@@ -58,7 +76,7 @@ class Display extends React.Component {
       if (this.props.search) {
         if (this.state.movie != null) {
           for (const [index,value] of this.state.movie.entries()) {
-            list_movie.push(<div className="result" key={index} onClick={this.saveMovie.bind(this)}>{value}</div>)
+            list_movie.push(<div className="result" key={index} onTouchStart={this.removeMovie.bind(this)} onClick={this.state.watch_click ? this.addMovie.bind(this) : undefined}>{value}</div>)
         } 
       }
       } else if (!this.props.search) {
@@ -74,8 +92,8 @@ class Display extends React.Component {
         }
       }} else if (this.state.exist == false) {
           list_movie.push(<div key={1} >Sorry Ik kan je film niet vinden :(</div>)
-          console.log(list_movie)
       }
+
         return(
            <div className="display" id="display">
              {this.state.loading ? <div>Loading....</div> : list_movie}

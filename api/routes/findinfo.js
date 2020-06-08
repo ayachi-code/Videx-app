@@ -22,7 +22,6 @@ router.get("/:info",function(req, res, next) {
   movie_info.overview.push(data.Plot);
   movie_info.release_date.push(data.Released);
   
-  console.log(data)
 
   res.send(movie_info)
   
