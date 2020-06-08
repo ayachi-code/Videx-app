@@ -9,7 +9,7 @@
 }
 
 
-#result {
+.result {
     border-color: white;
     border-width: 11px;
     border-style: solid;

@@ -4,8 +4,13 @@ import './style/watch.css'
 
 
 class Movielist extends React.Component {
+
+    componentDidMount() {
+        //Fetch Movie list
+    }
+
+
     render() {
-        
         return(
             <div id="watch">
                 

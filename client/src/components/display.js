@@ -10,7 +10,8 @@ class Display extends React.Component {
       movie: null,
       loading: true,
       movie_info: null,
-      exist: null
+      exist: null,
+      saveMovie: null
     }
   }
 
@@ -37,23 +38,22 @@ class Display extends React.Component {
     } catch (error) {
       console.log(error)
     }
-    /*
-    const [data1,data2] = await Promise.all([
-      fetch(find_url),
-      fetch(info_url)
-    ])
-    const respone = await Promise.all([data1.json(),data2.json()]);
-    this.setState({movie: respone[0].name,movie_info: respone[1],loading: false})
-    */
+  }
+  
+
+  saveMovie(event) {
+    //Request naar server om die op te slaan 'session'
+    console.log(event.target.innerText)
   }
 
-    render() {   
+  render() {   
+
     const list_movie = [];
     if (this.state.exist) {
       if (this.props.search) {
         if (this.state.movie != null) {
           for (const [index,value] of this.state.movie.entries()) {
-            list_movie.push(<div id="result" key={index}>{value}</div>)
+            list_movie.push(<div className="result" key={index} onClick={this.saveMovie}>{value}</div>)
         } 
       }
       } else if (!this.props.search) {
