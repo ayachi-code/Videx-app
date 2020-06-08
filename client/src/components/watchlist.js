@@ -13,7 +13,6 @@ class Movielist extends React.Component {
     render() {
         return(
             <div id="watch">
-                
             </div>
         )
     }

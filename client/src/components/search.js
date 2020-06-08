@@ -41,11 +41,9 @@ class Search extends React.Component {
         render_display_search = <Display search={false} movie={this.state.movie}/>
       } 
       
-
-
         return(
           <div id="search" onChange={this.onChangeValue}>
-           <input ref={(c) => this.film = c  } id="title" name="title" placeholder={this.state.input_text} onChange={this.realtime}/><br/>
+           <input ref={(c) => this.film = c  } id="title" name="title" placeholder={this.state.input_text}/><br/>
            <form>
              <label>
                zoeken

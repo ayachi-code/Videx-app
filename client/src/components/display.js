@@ -11,7 +11,7 @@ class Display extends React.Component {
       loading: true,
       movie_info: null,
       exist: null,
-      saveMovie: null
+      watch_list: []
     }
   }
 
@@ -42,8 +42,13 @@ class Display extends React.Component {
   
 
   saveMovie(event) {
-    //Request naar server om die op te slaan 'session'
-    console.log(event.target.innerText)
+    const movie = event.target.innerText;
+    this.state.watch_list.push(movie)
+    fetch('http://localhost:9000/watch/', {
+      method: "post",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({"usermovies": this.state.watch_list})
+    })
   }
 
   render() {   
@@ -53,7 +58,7 @@ class Display extends React.Component {
       if (this.props.search) {
         if (this.state.movie != null) {
           for (const [index,value] of this.state.movie.entries()) {
-            list_movie.push(<div className="result" key={index} onClick={this.saveMovie}>{value}</div>)
+            list_movie.push(<div className="result" key={index} onClick={this.saveMovie.bind(this)}>{value}</div>)
         } 
       }
       } else if (!this.props.search) {
