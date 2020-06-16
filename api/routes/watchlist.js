@@ -8,14 +8,11 @@ var router = express.Router();
 // })
 
 
-router.get("/", (req,res) => {
-    res.send(req.session)
-})
 
 router.get("/:movies", (req,res) => {
     req.session.userdata = req.params;
     console.log(req.session.userdata)
-    res.send({status: "succes"})
+    res.send({movies: req.session.userdata})
 })
 
 
