@@ -3,9 +3,11 @@ var router = express.Router();
 
 let movies = [];
 
-router.get('/:movies', function (req,res,next) {
-    
-});
+
+router.post('/', (req,res) => {
+    console.log(req.body)
+    res.send({a: "as"})
+})
 
 
 module.exports = router;

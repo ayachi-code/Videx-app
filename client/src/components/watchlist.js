@@ -26,6 +26,20 @@ class Movielist extends React.Component {
         console.log(this.state.movies)
     }   
 
+    async save() {
+        console.log("Save user data")
+        const request = await fetch("http://localhost:9000/watch/", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.movies)
+        })
+        let response = await request.json();
+        console.log(response)
+    }
+
     render() {
         let movieListEllement = [];
 
@@ -34,13 +48,10 @@ class Movielist extends React.Component {
                 movieListEllement.push(<div id="movie" key={index}>{value}</div>)
             } 
         }        
-        // for (const [index,value] of movies.entries()) {
-        //     movieListEllement.push(<div id="movie" key={index}>{value}</div>)
-        // } 
         return(
             <div>
             <button onClick={this.change.bind(this)}>change</button>
-            <button>Save</button>
+            <button onClick={this.save.bind(this)}>Save</button>
              <div id="watch">
                 {movieListEllement}
             </div>
