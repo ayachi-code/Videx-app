@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 #watch {
     position: fixed;
     bottom: 0;

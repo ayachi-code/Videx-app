@@ -4,6 +4,7 @@ import Search from './components/search';
 import Display from './components/display'
 import Movielist from './components/watchlist';
 
+
 class App extends React.Component {
     render() {
         return(

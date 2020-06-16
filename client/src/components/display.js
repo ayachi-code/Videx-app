@@ -13,6 +13,7 @@ class Display extends React.Component {
       loading: true,
       movie_info: null,
       exist: null,
+      watchlater: []
     }
   }
 
@@ -22,7 +23,6 @@ class Display extends React.Component {
     const find_url = "http://localhost:9000/find/ " + this.props.movie;
     const info_url = "http://localhost:9000/info/ " + this.props.movie;
 
-    
     try {
       const [data1,data2] = await Promise.all([
         fetch(find_url),
@@ -39,8 +39,7 @@ class Display extends React.Component {
     } catch (error) {
       console.log(error)
     }
-  }
-  ß
+  }  
   render() {   
 
     const list_movie = [];
@@ -48,7 +47,7 @@ class Display extends React.Component {
       if (this.props.search) {
         if (this.state.movie != null) {
           for (const [index,value] of this.state.movie.entries()) {
-            list_movie.push(<div className="result" key={index}>{value}</div>)
+            list_movie.push(<div className="result" key={index}><span onClick={this.addmovie.bind(this)}>{value}</span></div>)
         } 
       }
       } else if (!this.props.search) {
