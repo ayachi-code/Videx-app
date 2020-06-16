@@ -13,6 +13,7 @@ class Movielist extends React.Component {
     }
 
 
+
     change() {
         this.state.movies = []
         this.setState({clicked: true})
@@ -26,18 +27,14 @@ class Movielist extends React.Component {
         console.log(this.state.movies)
     }   
 
+
     async save() {
-        console.log("Save user data")
-        const request = await fetch("http://localhost:9000/watch/", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state.movies)
-        })
-        let response = await request.json();
-        console.log(response)
+        console.log(this.state.movies)
+        const request = await fetch("http://localhost:9000/watch/ " + this.state.movies)
+        const data = await request.json();
+        if (data.status === "succes") {
+            alert("succesvol opgeslagen :)")
+        }        
     }
 
     render() {

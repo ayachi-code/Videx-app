@@ -1,13 +1,23 @@
 var express = require("express");
 var router = express.Router();
 
-let movies = [];
+// router.post('/', (req,res) => {
+//     console.log(req.body)
+//     //req.session.userdata = req.body[0];
+//     //console.log(req.session.userdata)
+// })
 
 
-router.post('/', (req,res) => {
-    console.log(req.body)
-    res.send({a: "as"})
+router.get("/", (req,res) => {
+    res.send(req.session)
 })
+
+router.get("/:movies", (req,res) => {
+    req.session.userdata = req.params;
+    console.log(req.session.userdata)
+    res.send({status: "succes"})
+})
+
 
 
 module.exports = router;
