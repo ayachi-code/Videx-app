@@ -13,8 +13,6 @@ class Display extends React.Component {
       loading: true,
       movie_info: null,
       exist: null,
-      watchlist: [],
-      watch_click: true
     }
   }
 
@@ -42,33 +40,7 @@ class Display extends React.Component {
       console.log(error)
     }
   }
-  
-
-  removeMovie(event) {
-    //console.log(event.target.innerText)
-    if (this.state.watchlist.length < 5) {
-      this.setState({watch_click: true})
-    }
-    console.log(this.state.watchlist)
-    const index = this.state.watchlist.indexOf(event.target.innerText);
-    if (index > -1) {
-     this.state.watchlist.splice(index, 1);
-  }
-  }
-
-  addMovie(event) {
-
-    const movie = event.target.innerText;
-    this.state.watchlist.push(movie)
-    if (this.state.watchlist.length >= 5) {
-      //Watchlist niet langer kunnen maken
-      this.setState({watch_click: false})
-      console.log("Het is vol")
-    }
-
-    console.log(this.state.watchlist)
-  }
-
+  ß
   render() {   
 
     const list_movie = [];
@@ -76,7 +48,7 @@ class Display extends React.Component {
       if (this.props.search) {
         if (this.state.movie != null) {
           for (const [index,value] of this.state.movie.entries()) {
-            list_movie.push(<div className="result" key={index} onTouchStart={this.removeMovie.bind(this)} onClick={this.state.watch_click ? this.addMovie.bind(this) : undefined}>{value}</div>)
+            list_movie.push(<div className="result" key={index}>{value}</div>)
         } 
       }
       } else if (!this.props.search) {

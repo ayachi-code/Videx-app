@@ -5,18 +5,16 @@ import './style/watch.css'
 
 class Movielist extends React.Component {
 
-    componentDidMount() {
-        //Fetch Movie list
-    }
 
     render() {
+        let movieListEllement = [];
+
+        for (let i = 0; i <= 5; i++) {
+            movieListEllement.push(<div id="movie" key={i}></div>)
+        }
         return(
             <div id="watch">
-                <div id="movie">1</div>
-                <div id="movie">2</div>
-                <div id="movie">3</div>
-                <div id="movie">4</div>
-                <div id="movie">5</div>
+                {movieListEllement}
             </div>
         )
     }
