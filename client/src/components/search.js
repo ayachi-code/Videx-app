@@ -34,10 +34,10 @@ class Search extends React.Component {
      render() {
       let render_display;
       let render_display_search;
-      if (this.state.zoek == "vind") {
+      if (this.state.zoek === "vind") {
         render_display = <Display search={true} movie={this.state.movie}/>
         console.log(this.state.zoek)
-      } else if (this.state.zoek == "zoek") {
+      } else if (this.state.zoek === "zoek") {
         render_display_search = <Display search={false} movie={this.state.movie}/>
       } 
       
@@ -54,8 +54,8 @@ class Search extends React.Component {
                <input type="radio" value="vind" checked={this.state.zoek === "vind"} onChange={this.handleclick}/>
              </label>
            </form>
-            {this.state.zoek == "vind" ? render_display : <div></div>}
-            {this.state.zoek == "zoek" ? render_display_search : <div></div>}
+            {this.state.zoek === "vind" ? render_display : <div></div>}
+            {this.state.zoek === "zoek" ? render_display_search : <div></div>}
           </div>
         )
       }

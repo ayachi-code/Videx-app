@@ -21,4 +21,10 @@
     width: 19%;
     border-style: dotted;
     border-color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+.buttons, button {
+    border-radius: 100px;
 }

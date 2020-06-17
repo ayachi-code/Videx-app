@@ -22,8 +22,6 @@ class Movielist extends React.Component {
             res.splice(index,1)
         }
         this.setState({movies: res,loading: true})
-        //console.log(res)
-        //let res  = nocomma.split(" ");
     }
 
     change() {
@@ -39,7 +37,6 @@ class Movielist extends React.Component {
 
 
     async save() {
-        console.log(this.state.movies)
         const request = await fetch("http://localhost:9000/watch/ " + this.state.movies)
         const data = await request.json();
         localStorage.setItem("movies",data.movies.movies)
@@ -48,12 +45,6 @@ class Movielist extends React.Component {
 
     render() {
         let movieListEllement = [];
-
-        // if (this.state.loading) {
-        //     for (const [index,value] of this.state.movies.entries()) {
-        //         movieListEllement.push(<div id="movie" key={index}>{value}</div>)  
-        // } 
-        // }
 
         if (this.state.clicked) {
             for (const [index,value] of this.state.movies.entries()) {
@@ -68,8 +59,10 @@ class Movielist extends React.Component {
 
         return(
             <div>
-            <button onClick={this.change.bind(this)}>change</button>
-            <button onClick={this.save.bind(this)}>Save</button>
+            <div className="buttons">
+                <button onClick={this.change.bind(this)}>change</button>
+                <button onClick={this.save.bind(this)}>Save</button>
+            </div>
              <div id="watch">
                 {movieListEllement}
             </div>
