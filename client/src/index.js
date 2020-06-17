@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Search from './components/search';
 import Movielist from './components/watchlist';
+import Feedback from './components/feedback';
 
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
             <div>
                 <Search/>
                 <Movielist/>
+                <Feedback/>
             </div>
         )
     }
