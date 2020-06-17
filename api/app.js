@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var findRouter = require('./routes/findAPI');
 var findinfoRouter = require('./routes/findinfo')
 var watchlistRouter = require('./routes/watchlist')
+var feedbackRouter = require('./routes/feedbackAPI')
 
 
 var app = express();
@@ -29,10 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'keyboardcat',resave: true,saveUninitialized: true,cookie: { maxAge: 60000 }}))
  
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/find',findRouter);
 app.use('/info',findinfoRouter);
 app.use('/watch',watchlistRouter);
+app.use('/feedback',feedbackRouter)
 
 
 //Error handeler
