@@ -1,1 +1,5 @@
-Test
+Type eerst npm install bij de main map /
+Ga daarna naar api en type npm start
+Open een andere terminal en ga naar client type dan npm start
+Open je browser en type localhost:3000
+
