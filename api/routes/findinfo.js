@@ -5,10 +5,12 @@ var fetch = require("node-fetch")
 
 router.get("/:info",function(req, res, next) {
 
+  //Fetch na omdb voor film info
   const url = "http://www.omdbapi.com/?t=" + req.params.info + "&apikey=adb375bd"
   fetch(url)
   .then(response => response.json())
   .then(data => {
+    //De film resultaat komt in een object terecht met lijsten
     let movie_info = {
       name: [],
       language: [],
@@ -23,6 +25,7 @@ router.get("/:info",function(req, res, next) {
   movie_info.release_date.push(data.Released);
   
 
+  //Verstuur na client
   res.send(movie_info)
   
   })
