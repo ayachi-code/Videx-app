@@ -16,8 +16,8 @@ class Search extends React.Component {
       }
 
      
+      //Checkt waar de gebruiker op klikt
       handleclick(event) {
-        console.log(event.target.value)
         if (event.target.value === "zoek") {
           this.setState({
             zoek: "zoek",
@@ -34,13 +34,16 @@ class Search extends React.Component {
      render() {
       let render_display;
       let render_display_search;
+      //Als de gebruiker klikt op vinden render dan display
       if (this.state.zoek === "vind") {
         render_display = <Display search={true} movie={this.state.movie}/>
         console.log(this.state.zoek)
+        //Als de gebruiker klikt op zoek render dan zoek
       } else if (this.state.zoek === "zoek") {
         render_display_search = <Display search={false} movie={this.state.movie}/>
       } 
       
+      //Checkt wanneer het knopje blauw word
         return(
           <div id="search" onChange={this.onChangeValue}>
            <input ref={(c) => this.film = c  } id="title" name="title" placeholder={this.state.input_text}/><br/>
@@ -54,6 +57,7 @@ class Search extends React.Component {
                <input type="radio" value="vind" checked={this.state.zoek === "vind"} onChange={this.handleclick}/>
              </label>
            </form>
+
             {this.state.zoek === "vind" ? render_display : <div></div>}
             {this.state.zoek === "zoek" ? render_display_search : <div></div>}
           </div>

@@ -16,31 +16,35 @@ class Display extends React.Component {
     }
   }
 
-  async componentDidMount() {
 
-    
+  // Als display laad stuur dan een request voor vinden en zoeken
+  async componentDidMount() {
     const find_url = "http://localhost:9000/find/ " + this.props.movie;
     const info_url = "http://localhost:9000/info/ " + this.props.movie;
 
+    //voer de request uit
     try {
       const [data1,data2] = await Promise.all([
         fetch(find_url),
         fetch(info_url)
       ])
-      const respone = await Promise.all([data1.json(),data2.json()]);
-      console.log(respone[0].exist)
-      if (respone[0].exist === false) {
-        console.log("film bestata nie")
+      const response = await Promise.all([data1.json(),data2.json()]);
+      //Als film niet bestaat zet exist op false
+      if (response[0].exist === false) {
+        console.log("film bestata niet")
         this.setState({exist: false,loading: false});
       } else {
-      this.setState({movie: respone[0].name,movie_info: respone[1],loading: false,exist: true})
+        //Als film bestaat laat het laden stoppen en zet de info in de state
+      this.setState({movie: response[0].name,movie_info: response[1],loading: false,exist: true})
       }
     } catch (error) {
+      //Als er een API error is geef dan een bericht dat er iets mis is en zet laden op false
       this.setState({exist: false,loading: false})
     }
   }  
   render() {   
 
+    //conditional rendering voor wanneer zoek of vind info moet laten zien
     const list_movie = [];
     if (this.state.exist) {
       if (this.props.search) {
@@ -65,6 +69,7 @@ class Display extends React.Component {
       }
 
         return(
+          //Laat zien wanneer er laden staat op het scherm
            <div className="display" id="display">
              {this.state.loading ? <div>Loading....</div> : list_movie}
           </div>

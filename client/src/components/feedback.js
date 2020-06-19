@@ -9,7 +9,7 @@ class Feedback extends React.Component {
 
     async feedback() {
         //Vraagt om de gebruikers feedback en stuurt het dan naar de server via een POST request
-        let feeddback = window.prompt("Type hier je feedback :)") 
+        let feedback = window.prompt("Type hier je feedback :)") 
         const reqeust = await fetch("http://localhost:9000/feedback/", {
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},

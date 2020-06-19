@@ -13,7 +13,8 @@ class Movielist extends React.Component {
         }
     }
 
-
+    //Als de pagina laad of geen internet internet is laad dan chach zien
+    //Het pakt de laatse gesynchroniseerd kijklijst
     componentDidMount() {
         let nocomma = localStorage.getItem("movies").replace(/,/g, ' ')
         let res  = nocomma.split(" ");
@@ -24,6 +25,7 @@ class Movielist extends React.Component {
         this.setState({movies: res,loading: true})
     }
 
+    //Veranderd de data van de kijklijst
     change() {
         this.state.movies = []
         this.setState({clicked: true})
@@ -36,6 +38,7 @@ class Movielist extends React.Component {
     }   
 
 
+    //Als iemand op save klikt dan word er een request gedaan na de server en word er een session voor de gebruiker gemaakt
     async save() {
         const request = await fetch("http://localhost:9000/watch/ " + this.state.movies)
         const data = await request.json();
@@ -43,6 +46,7 @@ class Movielist extends React.Component {
         console.log(data.movies.movies)
     }
 
+    //conditional rendering van wat er op de kijk lijst staat
     render() {
         let movieListEllement = [];
 
@@ -51,12 +55,13 @@ class Movielist extends React.Component {
                 movieListEllement.push(<div id="movie" key={index}>{value}</div>) 
             } 
         } else {
+            //Laat de cach zien van wat er als laats gesynchroniseerd is van de server
             for (const [index,value] of this.state.movies.entries()) {
                 movieListEllement.push(<div id="movie" key={index}>{value}</div>) 
             } 
         }
 
-
+        //De knoppen en de watchlist renderen
         return(
             <div>
             <div className="buttons">
